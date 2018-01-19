@@ -1,0 +1,87 @@
+<html>
+
+    <head>
+        <title>ASSIGNMENT 3 PART 3</title>
+    </head>
+
+    <body>
+        <div id="viz"></div>
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+
+            // 1. In a new HTML file, read in data.json file using D3. This file contains an array of 10 objects that have the following properties: 
+            //    size and color.
+            // 2. In the top half the screen, create 10 rectangles (one for each object in the data) with widths and fill colors equal to the
+            //    `size` and `color` properties on the corresponding data object.
+            // 3. In the bottom half of the screen, create 10 circles (one for each object in the data) with fill colors equal to the `color` 
+            //    property on the corresponding data object.  Now picture the screen as an Cartesian plane with (0, 0) at the upper-left corner
+            //    of the screen. Position each circle such that the coordinates of its center are (`size`, -2*`size`). 
+
+            var height = 800;
+            var width = 800;
+
+            var svg = d3.select("#viz")
+                .append('svg')
+                .attr('height', height)
+                .attr('width', width);
+
+
+            d3.json('data.json', function (error, data) {
+
+                updateViz(data, svg);
+
+                var int = setInterval(function () {
+                    data.pop();
+                    updateViz(data, svg);
+
+                    if (data.length === 0) {
+                        clearInterval(int);
+                    }
+                }, 2000);
+
+            });
+
+            function updateViz(data, svg) {
+
+                var selection = svg.selectAll('circle')
+                    .data(data);
+                    
+                selection
+                    .enter()
+                    .append('circle')
+                    .attr('cx', function (d) {
+                        return Math.random() * 500 + d.size;
+                    })
+                    .attr('cy', function (d) {
+                        return Math.random() * 500 + d.size;
+                    })
+                    .attr('r', function (d) {
+                        return d.size;
+                    })
+                    .attr('stroke', function (d) {
+                        return d.color;
+                    })
+                    .attr('fill', 'none');
+                    
+                selection
+                    .exit()
+                    .remove();
+
+                selection
+                    .attr('height', function (d) {
+                        return d.size;
+                    })
+                    .attr('width', function (d) {
+                        return 2 * d.size;
+                    })
+                    .attr('stroke', function (d) {
+                        return d.color;
+                    });
+
+            }
+
+        </script>
+    </body>
+
+</html>

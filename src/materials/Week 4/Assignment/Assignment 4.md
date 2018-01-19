@@ -5,7 +5,7 @@ This assignment focuses on inserting various SVG elements in the DOM using D3. U
 ### Part 1
 1. Use the `climate.json` file to create a horizontal bar chart that shows yearly global temperatures. Your chart should meet the following criteria:
     - Use a D3 scale for the x axis. 
-    - The width of the bar should be related to the temperature and the each bar should have a label indicating which year that temperature represents.
+    - The width of the bar should be related to the temperature and each bar should have a label indicating which year that temperature represents.
     - The color of the bar should change each decade (you can choose whichever color you like for each decade)
     - The height of each bar should be 5 pixels with 2 pixels separating each bar. 
     - The chart should have a title, axes, and axis labels
@@ -22,7 +22,7 @@ Review `Viz Critique.png` and use what you have learned about data visualization
 
 
 ### Materials
-1. `Assignment 3.md`: This document
+1. `Assignment 4.md`: This document
 2. `data.json`: The data that you will use throughout this assignment
 3. `Viz Critique.png`: Visualization to critique
 
